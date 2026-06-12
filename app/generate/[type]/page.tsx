@@ -141,13 +141,13 @@ export default function GeneratePage({ params }: { params: { type: string } }) {
     router.push(`/document/${data.doc_id}`);
   }
 
-  const inp = "w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-green-400 bg-gray-50";
+  const inp = "w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-400 bg-gray-50";
 
   return (
-    <div className="min-h-screen" style={{ background: "#f0fdf4" }}>
-      <header style={{ background: "linear-gradient(135deg,#15803d,#166534)" }} className="text-white px-6 py-4">
+    <div className="min-h-screen" style={{ background: "#eff6ff" }}>
+      <header style={{ background: "linear-gradient(135deg,#1e3a5f,#162d4a)" }} className="text-white px-6 py-4">
         <div className="max-w-2xl mx-auto flex items-center gap-3">
-          <Link href="/" className="text-green-200 hover:text-white text-sm">← Back</Link>
+          <Link href="/" className="text-blue-200 hover:text-white text-sm">← Back</Link>
           <h1 className="text-lg font-black">LegalDocs ZM ⚖️</h1>
         </div>
       </header>
@@ -157,7 +157,7 @@ export default function GeneratePage({ params }: { params: { type: string } }) {
           <span className="text-4xl">{config.icon}</span>
           <div>
             <h2 className="text-2xl font-black text-gray-900">{config.label}</h2>
-            <p className="text-sm font-bold" style={{ color: "#15803d" }}>ZMW {config.price}</p>
+            <p className="text-sm font-bold" style={{ color: "#1e3a5f" }}>ZMW {config.price}</p>
           </div>
         </div>
         <p className="text-sm text-gray-500 mb-6">Fill in the details below. AI will generate a complete Zambian legal document.</p>
@@ -171,7 +171,7 @@ export default function GeneratePage({ params }: { params: { type: string } }) {
                 {f.rows ? (
                   <textarea value={fields[f.key] ?? ""} onChange={(e) => setField(f.key, e.target.value)}
                     placeholder={f.placeholder} rows={f.rows} required
-                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-green-400 bg-gray-50 resize-none" />
+                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-400 bg-gray-50 resize-none" />
                 ) : (
                   <input value={fields[f.key] ?? ""} onChange={(e) => setField(f.key, e.target.value)}
                     placeholder={f.placeholder} type={f.type ?? "text"} required className={inp} />
@@ -187,7 +187,7 @@ export default function GeneratePage({ params }: { params: { type: string } }) {
             <input value={requesterPhone} onChange={(e) => setRequesterPhone(e.target.value)} placeholder="Your phone (e.g. 0976123456)" required className={inp} />
           </div>
 
-          <div className="bg-white rounded-2xl p-4 border border-green-100 text-sm text-gray-600">
+          <div className="bg-white rounded-2xl p-4 border border-blue-100 text-sm text-gray-600">
             <p className="font-semibold text-gray-800 mb-1">💡 What happens next</p>
             <p>After submitting, your document is generated instantly. You will see a preview and pay <strong>ZMW {config.price}</strong> via MTN MoMo to unlock the full document.</p>
           </div>
@@ -196,7 +196,7 @@ export default function GeneratePage({ params }: { params: { type: string } }) {
 
           <button type="submit" disabled={loading}
             className="w-full text-white font-black py-4 rounded-xl text-sm disabled:opacity-50 transition-all hover:opacity-90"
-            style={{ background: "linear-gradient(135deg,#15803d,#166534)" }}>
+            style={{ background: "linear-gradient(135deg,#1e3a5f,#162d4a)" }}>
             {loading ? "Generating document..." : `Generate ${config.label} — ZMW ${config.price}`}
           </button>
         </form>

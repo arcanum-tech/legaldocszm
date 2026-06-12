@@ -15,8 +15,8 @@ export default function CopyButton({ text }: { text: string }) {
     <button onClick={copy}
       className="text-xs font-bold px-3 py-1.5 rounded-full transition-colors"
       style={copied
-        ? { background: "#dcfce7", color: "#15803d" }
-        : { background: "linear-gradient(135deg,#15803d,#166534)", color: "white" }}>
+        ? { background: "#dbeafe", color: "#1e3a5f" }
+        : { background: "linear-gradient(135deg,#1e3a5f,#162d4a)", color: "white" }}>
       {copied ? "✓ Copied!" : "Copy Document"}
     </button>
   );

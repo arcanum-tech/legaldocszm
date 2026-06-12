@@ -13,9 +13,9 @@ const DOC_TYPES = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen" style={{ background: "#f0fdf4", fontFamily: "system-ui, sans-serif" }}>
+    <div className="min-h-screen" style={{ background: "#eff6ff", fontFamily: "system-ui, sans-serif" }}>
       {/* Header */}
-      <header style={{ background: "linear-gradient(135deg, #15803d 0%, #166534 100%)" }} className="text-white px-6 py-4 shadow-lg">
+      <header style={{ background: "linear-gradient(135deg, #1e3a5f 0%, #162d4a 100%)" }} className="text-white px-6 py-4 shadow-lg">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ background: "rgba(255,255,255,0.2)" }}>⚖️</div>
@@ -31,14 +31,14 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section style={{ background: "linear-gradient(135deg, #15803d 0%, #166534 100%)" }} className="text-white px-6 pt-10 pb-16">
+      <section style={{ background: "linear-gradient(135deg, #1e3a5f 0%, #162d4a 100%)" }} className="text-white px-6 pt-10 pb-16">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4" style={{ background: "rgba(255,255,255,0.15)" }}>
             ⚖️ Professional documents in minutes
           </div>
           <h2 className="text-4xl font-black mb-3 leading-tight">
             Legal documents.<br />
-            <span style={{ color: "#bbf7d0" }}>No lawyer needed.</span>
+            <span style={{ color: "#bfdbfe" }}>No lawyer needed.</span>
           </h2>
           <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.8)" }}>
             Fill in the details · AI drafts your document · Pay & download · Done in 2 minutes
@@ -58,13 +58,13 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {DOC_TYPES.map((doc) => (
             <Link key={doc.id} href={`/generate/${doc.id}`}
-              className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-lg hover:border-green-300 transition-all group">
+              className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all group">
               <div className="text-4xl mb-3">{doc.icon}</div>
-              <p className="font-black text-gray-900 mb-1 group-hover:text-green-700 transition-colors">{doc.label}</p>
+              <p className="font-black text-gray-900 mb-1 group-hover:text-blue-800 transition-colors">{doc.label}</p>
               <p className="text-xs text-gray-500 mb-3 leading-relaxed">{doc.desc}</p>
               <div className="flex items-center justify-between">
-                <span className="text-lg font-black" style={{ color: "#15803d" }}>ZMW {doc.price}</span>
-                <span className="text-xs text-white font-bold px-2.5 py-1 rounded-full" style={{ background: "linear-gradient(135deg,#15803d,#166534)" }}>
+                <span className="text-lg font-black" style={{ color: "#1e3a5f" }}>ZMW {doc.price}</span>
+                <span className="text-xs text-white font-bold px-2.5 py-1 rounded-full" style={{ background: "linear-gradient(135deg,#1e3a5f,#162d4a)" }}>
                   Generate →
                 </span>
               </div>
@@ -86,7 +86,7 @@ export default function Home() {
             ].map((s) => (
               <div key={s.step} className="text-center">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl mx-auto mb-3"
-                  style={{ background: "linear-gradient(135deg,#dcfce7,#bbf7d0)" }}>
+                  style={{ background: "linear-gradient(135deg,#dbeafe,#bfdbfe)" }}>
                   {s.icon}
                 </div>
                 <p className="font-black text-gray-800 text-sm mb-1">{s.title}</p>
@@ -99,7 +99,7 @@ export default function Home() {
 
       <footer className="text-center py-8 text-xs" style={{ background: "#111827", color: "#9ca3af" }}>
         <p className="text-white font-black text-base mb-1">LegalDocs ZM ⚖️</p>
-        <p className="mb-1">Powered by <span style={{ color: "#86efac" }}>ARCANUM TECH LIMITED</span> · TPIN: 2003723894 · Lusaka, Zambia</p>
+        <p className="mb-1">Powered by <span style={{ color: "#93c5fd" }}>ARCANUM TECH LIMITED</span> · TPIN: 2003723894 · Lusaka, Zambia</p>
         <p style={{ color: "#6b7280" }}>Documents are AI-generated guides. For complex matters consult a qualified Zambian lawyer.</p>
       </footer>
     </div>

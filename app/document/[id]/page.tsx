@@ -23,17 +23,17 @@ export default async function DocumentPage({ params, searchParams }: { params: {
   const payUrl = `https://arcanum-payments.vercel.app/pay?app=legaldocszm&product=${encodeURIComponent(doc.title)}&amount=${price}&callback=${encodeURIComponent(`https://legaldocszm.vercel.app/api/payment-callback?doc_id=${params.id}&status=success`)}`;
 
   return (
-    <div className="min-h-screen" style={{ background: "#f0fdf4" }}>
-      <header style={{ background: "linear-gradient(135deg,#15803d,#166534)" }} className="text-white px-6 py-4">
+    <div className="min-h-screen" style={{ background: "#eff6ff" }}>
+      <header style={{ background: "linear-gradient(135deg,#1e3a5f,#162d4a)" }} className="text-white px-6 py-4">
         <div className="max-w-3xl mx-auto flex items-center gap-3">
-          <Link href="/" className="text-green-200 hover:text-white text-sm">← Home</Link>
+          <Link href="/" className="text-blue-200 hover:text-white text-sm">← Home</Link>
           <h1 className="text-lg font-black">LegalDocs ZM ⚖️</h1>
         </div>
       </header>
 
       <main className="max-w-3xl mx-auto px-4 py-8 space-y-5">
         {justPaid && (
-          <div className="bg-green-50 border border-green-200 text-green-800 rounded-xl px-5 py-3 text-sm font-semibold">
+          <div className="bg-blue-50 border border-blue-200 text-blue-900 rounded-xl px-5 py-3 text-sm font-semibold">
             🎉 Payment confirmed! Your full document is now unlocked below.
           </div>
         )}
@@ -44,7 +44,7 @@ export default async function DocumentPage({ params, searchParams }: { params: {
               <h2 className="text-lg font-black text-gray-900">{doc.title}</h2>
               <p className="text-xs text-gray-400 mt-0.5">Generated {new Date(doc.created_at).toLocaleDateString("en-ZM")}</p>
             </div>
-            <span className={`text-xs font-bold px-3 py-1 rounded-full ${isPaid ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"}`}>
+            <span className={`text-xs font-bold px-3 py-1 rounded-full ${isPaid ? "bg-blue-100 text-blue-800" : "bg-yellow-100 text-yellow-700"}`}>
               {isPaid ? "✓ Paid & Unlocked" : `ZMW ${price} — Payment Required`}
             </span>
           </div>
@@ -69,7 +69,7 @@ export default async function DocumentPage({ params, searchParams }: { params: {
                   <p className="text-sm text-gray-500 mb-4">Pay ZMW {price} to unlock and copy the full document</p>
                   <a href={payUrl}
                     className="inline-block text-white font-black px-6 py-3 rounded-xl text-sm hover:opacity-90 transition-all"
-                    style={{ background: "linear-gradient(135deg,#15803d,#166534)" }}>
+                    style={{ background: "linear-gradient(135deg,#1e3a5f,#162d4a)" }}>
                     Pay ZMW {price} — MTN MoMo →
                   </a>
                 </div>
@@ -79,7 +79,7 @@ export default async function DocumentPage({ params, searchParams }: { params: {
         </div>
 
         {isPaid && (
-          <div className="bg-white rounded-2xl p-5 border border-green-100 text-sm text-gray-600 space-y-2">
+          <div className="bg-white rounded-2xl p-5 border border-blue-100 text-sm text-gray-600 space-y-2">
             <p className="font-black text-gray-800">📋 Next steps</p>
             <ul className="space-y-1 text-xs">
               <li>• Copy the document and paste it into Microsoft Word or Google Docs</li>
@@ -90,7 +90,7 @@ export default async function DocumentPage({ params, searchParams }: { params: {
         )}
 
         <div className="text-center">
-          <Link href="/" className="text-sm font-bold" style={{ color: "#15803d" }}>
+          <Link href="/" className="text-sm font-bold" style={{ color: "#1e3a5f" }}>
             ← Generate another document
           </Link>
         </div>
