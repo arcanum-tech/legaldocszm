@@ -43,16 +43,39 @@ export default function Home() {
           <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.8)" }}>
             Fill in the details · AI drafts your document · Pay & download · Done in 2 minutes
           </p>
-          <div className="flex flex-wrap justify-center gap-3 text-xs">
-            {["Affidavits", "Sale Agreements", "Tenancy Contracts", "NDAs", "Demand Letters", "Employment Contracts"].map((t) => (
-              <span key={t} className="px-3 py-1 rounded-full font-semibold" style={{ background: "rgba(255,255,255,0.2)" }}>{t}</span>
+          <div className="flex flex-wrap justify-center gap-3 text-xs mb-8">
+            {[
+              { label: "Affidavits", id: "affidavit" },
+              { label: "Sale Agreements", id: "sale_agreement" },
+              { label: "Tenancy Contracts", id: "tenancy" },
+              { label: "NDAs", id: "nda" },
+              { label: "Demand Letters", id: "demand_letter" },
+              { label: "Employment Contracts", id: "employment" },
+            ].map((t) => (
+              <Link key={t.id} href={`/generate/${t.id}`}
+                className="px-3 py-1 rounded-full font-semibold transition-all hover:scale-105"
+                style={{ background: "rgba(255,255,255,0.2)" }}>
+                {t.label} →
+              </Link>
             ))}
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link href="#documents"
+              className="px-6 py-3 rounded-xl font-black text-sm text-white transition-all hover:opacity-90"
+              style={{ background: "rgba(255,255,255,0.25)", border: "2px solid rgba(255,255,255,0.4)" }}>
+              Browse All Documents
+            </Link>
+            <Link href="/generate/affidavit"
+              className="px-6 py-3 rounded-xl font-black text-sm transition-all hover:opacity-90"
+              style={{ background: "#ffffff", color: "#1e3a5f" }}>
+              Start with Affidavit →
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Document types */}
-      <section className="max-w-5xl mx-auto px-6 py-10">
+      <section id="documents" className="max-w-5xl mx-auto px-6 py-10">
         <h3 className="text-xl font-black text-gray-800 mb-2">Choose a Document</h3>
         <p className="text-sm text-gray-500 mb-6">All documents are tailored to Zambian law</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
