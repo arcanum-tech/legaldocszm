@@ -98,7 +98,7 @@ export async function POST(req: NextRequest) {
   const response = await client.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 2000,
-    system: "You are a Zambian legal document drafter. Produce complete, professional legal documents formatted with clear sections. Use formal legal English. Include all standard clauses for Zambia. Output only the document itself — no preamble, no commentary.",
+    system: "You are a Zambian legal document drafter. Produce complete, professional legal documents. Use formal legal English. Include all standard clauses for Zambia. Output PLAIN TEXT only — no markdown, no asterisks, no hashes, no dashes for headings, no &nbsp;, no HTML. Use UPPERCASE for section headings. Use a line of underscores (_______________) for signature lines. Separate sections with blank lines. Output only the document itself — no preamble, no commentary.",
     messages: [{ role: "user", content: promptFn(fields) }],
   });
 

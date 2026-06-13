@@ -21,7 +21,21 @@ export default async function DocumentPage({ params, searchParams }: { params: P
   const price = PRICES[doc.doc_type] ?? doc.amount_paid_zmw;
 
   // Preview: show first 300 chars if not paid
-  const preview = doc.content.slice(0, 400) + "...";
+  function cleanDoc(text: string) {
+    return text
+      .replace(/^#{1,6}\s+/gm, "")          // remove # headings
+      .replace(/\*\*(.*?)\*\*/g, "$1")       // remove **bold**
+      .replace(/\*(.*?)\*/g, "$1")           // remove *italic*
+      .replace(/^---+$/gm, "")              // remove --- dividers
+      .replace(/&nbsp;/g, "")               // remove &nbsp;
+      .replace(/\\(_+)/g, "$1")             // unescape \___ → ___
+      .replace(/\\_/g, "_")                 // unescape remaining \_
+      .replace(/\n{3,}/g, "\n\n")           // collapse excess blank lines
+      .trim();
+  }
+
+  const cleanContent = cleanDoc(doc.content);
+  const preview = cleanContent.slice(0, 400) + "...";
   const payUrl = `https://arcanum-payments.vercel.app/pay?app=legaldocszm&product=${encodeURIComponent(doc.title)}&amount=${price}&callback=${encodeURIComponent(`https://legaldocszm.vercel.app/api/payment-callback?doc_id=${id}&status=success`)}`;
 
   return (
@@ -56,12 +70,12 @@ export default async function DocumentPage({ params, searchParams }: { params: P
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
           <div className="px-5 py-3 border-b border-gray-100 flex items-center justify-between">
             <p className="text-sm font-black text-gray-700">Document Preview</p>
-            {isPaid && <CopyButton text={doc.content} />}
+            {isPaid && <CopyButton text={cleanContent} />}
           </div>
           <div className="p-5 relative">
             <pre className="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed font-mono"
               style={{ filter: isPaid ? "none" : "blur(4px)", userSelect: isPaid ? "auto" : "none" }}>
-              {isPaid ? doc.content : preview}
+              {isPaid ? cleanContent : preview}
             </pre>
             {!isPaid && (
               <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ background: "rgba(240,253,244,0.85)" }}>
