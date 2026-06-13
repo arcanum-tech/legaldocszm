@@ -10,9 +10,9 @@ const DOC_CONFIG: Record<string, { label: string; icon: string; price: number; f
   affidavit: {
     label: "Affidavit", icon: "📜", price: 30,
     fields: [
-      { key: "deponent_name", label: "Deponent Full Name", placeholder: "e.g. Sanwicklith Christopher Mkalinga" },
-      { key: "nrc", label: "NRC Number", placeholder: "e.g. 177584/63/1" },
-      { key: "address", label: "Residential Address", placeholder: "e.g. #2 Zambezi Drive, Meanwood Ibex, Lusaka" },
+      { key: "deponent_name", label: "Deponent Full Name", placeholder: "e.g. John Doe" },
+      { key: "nrc", label: "NRC Number", placeholder: "e.g. 123456/78/1" },
+      { key: "address", label: "Residential Address", placeholder: "e.g. Plot 123, Woodlands, Lusaka" },
       { key: "statement", label: "Statement of Facts", placeholder: "State the facts you are swearing to...", rows: 5 },
       { key: "date", label: "Date", placeholder: TODAY, type: "date" },
     ],
@@ -73,8 +73,8 @@ const DOC_CONFIG: Record<string, { label: string; icon: string; price: number; f
   demand_letter: {
     label: "Demand Letter", icon: "✉️", price: 50,
     fields: [
-      { key: "sender_name", label: "Your Full Name / Company", placeholder: "e.g. Sanwicklith Mkalinga" },
-      { key: "sender_address", label: "Your Address", placeholder: "e.g. #2 Zambezi Drive, Meanwood, Lusaka" },
+      { key: "sender_name", label: "Your Full Name / Company", placeholder: "e.g. John Doe" },
+      { key: "sender_address", label: "Your Address", placeholder: "e.g. Plot 123, Woodlands, Lusaka" },
       { key: "recipient_name", label: "Recipient Name / Company", placeholder: "e.g. ABC Contractors Ltd" },
       { key: "recipient_address", label: "Recipient Address", placeholder: "e.g. Cairo Road, Lusaka" },
       { key: "demand", label: "What You Are Demanding", placeholder: "e.g. Payment of ZMW 25,000 owed for construction work completed" },
@@ -99,9 +99,9 @@ const DOC_CONFIG: Record<string, { label: string; icon: string; price: number; f
   power_of_attorney: {
     label: "Power of Attorney", icon: "✍️", price: 90,
     fields: [
-      { key: "principal_name", label: "Principal Full Name (who is granting)", placeholder: "e.g. Sanwicklith Mkalinga" },
-      { key: "principal_nrc", label: "Principal NRC", placeholder: "e.g. 177584/63/1" },
-      { key: "principal_address", label: "Principal Address", placeholder: "e.g. #2 Zambezi Drive, Meanwood, Lusaka" },
+      { key: "principal_name", label: "Principal Full Name (who is granting)", placeholder: "e.g. John Doe" },
+      { key: "principal_nrc", label: "Principal NRC", placeholder: "e.g. 123456/78/1" },
+      { key: "principal_address", label: "Principal Address", placeholder: "e.g. Plot 123, Woodlands, Lusaka" },
       { key: "agent_name", label: "Attorney/Agent Full Name", placeholder: "e.g. Michael Tembo" },
       { key: "agent_nrc", label: "Agent NRC", placeholder: "e.g. 998877/66/1" },
       { key: "powers", label: "Powers Granted", placeholder: "e.g. To sell, transfer and sign all documents relating to Plot 567, Woodlands, Lusaka on my behalf" },
