@@ -10,17 +10,19 @@ const PRICES: Record<string, number> = {
   tenancy: 60, demand_letter: 50, loan: 70, power_of_attorney: 90,
 };
 
-export default async function DocumentPage({ params, searchParams }: { params: { id: string }; searchParams: { paid?: string } }) {
-  const { data: doc } = await supabaseAdmin.from("legal_documents").select("*").eq("id", params.id).single();
+export default async function DocumentPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ paid?: string }> }) {
+  const { id } = await params;
+  const { paid } = await searchParams;
+  const { data: doc } = await supabaseAdmin.from("legal_documents").select("*").eq("id", id).single();
   if (!doc) return notFound();
 
   const isPaid = doc.is_paid;
-  const justPaid = searchParams.paid === "1";
+  const justPaid = paid === "1";
   const price = PRICES[doc.doc_type] ?? doc.amount_paid_zmw;
 
   // Preview: show first 300 chars if not paid
   const preview = doc.content.slice(0, 400) + "...";
-  const payUrl = `https://arcanum-payments.vercel.app/pay?app=legaldocszm&product=${encodeURIComponent(doc.title)}&amount=${price}&callback=${encodeURIComponent(`https://legaldocszm.vercel.app/api/payment-callback?doc_id=${params.id}&status=success`)}`;
+  const payUrl = `https://arcanum-payments.vercel.app/pay?app=legaldocszm&product=${encodeURIComponent(doc.title)}&amount=${price}&callback=${encodeURIComponent(`https://legaldocszm.vercel.app/api/payment-callback?doc_id=${id}&status=success`)}`;
 
   return (
     <div className="min-h-screen" style={{ background: "#eff6ff" }}>
