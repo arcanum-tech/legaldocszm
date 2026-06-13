@@ -24,9 +24,9 @@ export default function Home() {
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.7)" }}>Zambian Legal Documents 🇿🇲</p>
             </div>
           </div>
-          <div className="text-xs font-semibold px-3 py-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.15)" }}>
-            AI-Powered · Zambia-Specific
-          </div>
+          <Link href="/my-documents" className="text-xs font-semibold px-3 py-1.5 rounded-full transition-all hover:bg-white/30" style={{ background: "rgba(255,255,255,0.15)" }}>
+            📂 My Documents
+          </Link>
         </div>
       </header>
 

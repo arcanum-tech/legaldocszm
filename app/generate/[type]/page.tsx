@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -111,8 +111,9 @@ const DOC_CONFIG: Record<string, { label: string; icon: string; price: number; f
   },
 };
 
-export default function GeneratePage({ params }: { params: { type: string } }) {
-  const config = DOC_CONFIG[params.type];
+export default function GeneratePage({ params }: { params: Promise<{ type: string }> }) {
+  const { type } = use(params);
+  const config = DOC_CONFIG[type];
   const router = useRouter();
   const [fields, setFields] = useState<Record<string, string>>({});
   const [requesterName, setRequesterName] = useState("");
@@ -133,7 +134,7 @@ export default function GeneratePage({ params }: { params: { type: string } }) {
     const res = await fetch("/api/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ doc_type: params.type, fields, requester_name: requesterName, requester_phone: requesterPhone }),
+      body: JSON.stringify({ doc_type: type, fields, requester_name: requesterName, requester_phone: requesterPhone }),
     });
     const data = await res.json();
     setLoading(false);
