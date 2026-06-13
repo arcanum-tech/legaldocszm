@@ -106,7 +106,7 @@ export async function POST(req: NextRequest) {
 
   const { data: doc, error } = await supabaseAdmin.from("legal_documents").insert([{
     doc_type,
-    title: `${doc_type.replace(/_/g, " ").toUpperCase()} — ${fields.deponent_name || fields.seller_name || fields.sender_name || fields.principal_name || fields.disclosing_party || fields.employer || fields.lender_name || "Document"}`,
+    title: `${doc_type.replace(/_/g, " ").toUpperCase()} - ${fields.deponent_name || fields.seller_name || fields.sender_name || fields.principal_name || fields.disclosing_party || fields.employer || fields.lender_name || "Document"}`,
     fields,
     content,
     requester_name,
