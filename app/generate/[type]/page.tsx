@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, use } from "react";
+import { useState, use, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -115,11 +115,32 @@ export default function GeneratePage({ params }: { params: Promise<{ type: strin
   const { type } = use(params);
   const config = DOC_CONFIG[type];
   const router = useRouter();
+  const CACHE_KEY = `legaldocs_draft_${type}`;
   const [fields, setFields] = useState<Record<string, string>>({});
   const [requesterName, setRequesterName] = useState("");
   const [requesterPhone, setRequesterPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // Restore from sessionStorage on mount
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem(CACHE_KEY);
+      if (saved) {
+        const { fields: f, requesterName: n, requesterPhone: p } = JSON.parse(saved);
+        if (f) setFields(f);
+        if (n) setRequesterName(n);
+        if (p) setRequesterPhone(p);
+      }
+    } catch {}
+  }, [CACHE_KEY]);
+
+  // Persist to sessionStorage on every change
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(CACHE_KEY, JSON.stringify({ fields, requesterName, requesterPhone }));
+    } catch {}
+  }, [fields, requesterName, requesterPhone, CACHE_KEY]);
 
   if (!config) return <div className="p-8 text-center text-red-500">Unknown document type.</div>;
 
@@ -139,6 +160,8 @@ export default function GeneratePage({ params }: { params: Promise<{ type: strin
     const data = await res.json();
     setLoading(false);
     if (!res.ok) { setError(data.error); return; }
+    // Clear cache on successful submission
+    try { sessionStorage.removeItem(CACHE_KEY); } catch {}
     router.push(`/document/${data.doc_id}`);
   }
 
